@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
+const URI_STRING =
+  process.env.MONDGODB_URI || "mongodb://localhost/HelloMongoose";
 const Profile = require("./ProfileSchema");
 
 app.use(bodyParser.json());
@@ -14,9 +16,15 @@ app.get("/", async (req, res) => {
 });
 
 mongoose.connect(
-  process.env.MONDGODB_URI,
+  URI_STRING,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("connected to db")
+  (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("success");
+    }
+  }
 );
 
 app.listen(PORT);
