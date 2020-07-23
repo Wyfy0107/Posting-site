@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
 });
 
 mongoose.connect(
-  process.env.MONDGOB_URI,
+  process.env.MONDGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected to db")
 );
