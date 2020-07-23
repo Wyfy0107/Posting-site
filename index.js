@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
 });
 
 mongoose.connect(
-  "mongodb+srv://wyfy:Wyfy010798@cluster0.juxbs.mongodb.net/Cluster0?retryWrites=true&w=majority",
+  process.env.MONDGOB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connected to db")
 );
