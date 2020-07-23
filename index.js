@@ -15,16 +15,12 @@ app.get("/", async (req, res) => {
   res.end();
 });
 
-mongoose.connect(
-  uristring,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (err, res) => {
-    if (err) {
-      console.log("failed" + error);
-    } else {
-      console.log("success");
-    }
+mongoose.connect(uristring, (err, res) => {
+  if (err) {
+    console.log("failed" + error);
+  } else {
+    console.log("success");
   }
-);
+});
 
 app.listen(PORT);
