@@ -11,7 +11,9 @@ app.get("/", async (req, res) => {
   try {
     const profile = await Profile.find();
     res.send(profile);
-  } catch (error) {}
+  } catch (error) {
+    res.json({ message: error });
+  }
 });
 
 app.post("/", async (req, res) => {
