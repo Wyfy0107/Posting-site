@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const URI_STRING =
+const uristring =
   process.env.MONDGODB_URI || "mongodb://localhost/HelloMongoose";
 const Profile = require("./ProfileSchema");
 
@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
 });
 
 mongoose.connect(
-  URI_STRING,
+  uristring,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err, res) => {
     if (err) {
