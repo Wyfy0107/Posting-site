@@ -8,13 +8,12 @@ const Profile = require("./ProfileSchema");
 app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
-  res.send("hello");
-  //   try {
-  //     const profile = await Profile.find();
-  //     res.send(profile);
-  //   } catch (error) {
-  //     res.json({ message: error });
-  //   }
+  try {
+    const profile = await Profile.find();
+    res.json(profile);
+  } catch (error) {
+    res.json({ message: error });
+  }
 });
 
 app.post("/", async (req, res) => {
