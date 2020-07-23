@@ -11,8 +11,10 @@ app.get("/", async (req, res) => {
   try {
     const profile = await Profile.find();
     res.json(profile);
+    return res.end();
   } catch (error) {
     res.json({ message: error });
+    return res.end();
   }
 });
 
@@ -24,10 +26,11 @@ app.post("/", async (req, res) => {
       age: req.body.age,
     });
     const savedProfile = await profile.save();
-    res.send(savedProfile);
+    res.json(savedProfile);
     return res.end();
   } catch (error) {
     res.json({ message: error });
+    return res.end();
   }
 });
 
