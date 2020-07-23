@@ -25,6 +25,7 @@ app.post("/", async (req, res) => {
     });
     const savedProfile = await profile.save();
     res.send(savedProfile);
+    return res.end();
   } catch (error) {
     res.json({ message: error });
   }
