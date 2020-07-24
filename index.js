@@ -17,10 +17,13 @@ app.get("/", async (req, res) => {
   }
 });
 
-mongoose.connect(
-  process.env.MONDGODB_URI ||
-    "mongodb+srv://wyfy:Wyfy010798@cluster0.juxbs.mongodb.net/Cluster0?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
-
-app.listen(PORT);
+mongoose
+  .connect(
+    process.env.MONDGODB_URI ||
+      "mongodb+srv://wyfy:Wyfy010798@cluster0.juxbs.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    app.listen(PORT);
+  })
+  .catch((err) => console.log(err));
