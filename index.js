@@ -8,21 +8,26 @@ const Profile = require("./ProfileSchema");
 app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
-  const profile = await Profile.find();
-  res.json(profile);
-  res.end();
+  try {
+    const profile = await Profile.find();
+    res.json(profile);
+    res.end();
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 mongoose.connect(
   process.env.MONDGODB_URI ||
     "mongodb+srv://wyfy:Wyfy010798@cluster0.juxbs.mongodb.net/Cluster0?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
-  async (err, res) => {
-    try {
-      console.log('success')
-    } catch (error) {
-      res.json({message: error})
+  (err, res) => {
+    if (err) {
+      console.log("faied" + error);
+    } else {
+      console.log("success");
     }
+  }
 );
 
 app.listen(PORT);
