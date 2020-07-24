@@ -29,6 +29,15 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.delete("/", async (req, res) => {
+  try {
+    const deletedPost = await Post.deleteOne({ _id: req.body.id });
+    res.json(deletedPost);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 mongoose
   .connect(
     process.env.MONDGODB_URI ||
