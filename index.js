@@ -23,7 +23,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err, res) => {
     if (err) {
-      console.log("faied" + error);
+      console.log("failed" + error);
     } else {
       console.log("success");
     }
