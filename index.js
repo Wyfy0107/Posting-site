@@ -3,16 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const Profile = require("./ProfileSchema");
+const Post = require("./PostSchema");
 
 app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
   try {
-    console.log("wokrking");
-    const profile = await Profile.find();
-    res.json(profile);
-    res.end();
+    const allPosts = await Post.find();
+    res.json(allPosts);
   } catch (error) {
     res.json(error);
   }
@@ -20,13 +18,12 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
-    const profile = new Profile({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      age: req.body.age,
+    const newPost = new Post({
+      title: req.body.title,
+      content: req.body.content,
     });
-    const savedProfile = await profile.save();
-    res.json(savedProfile);
+    const savedPost = await newPost.save();
+    res.json(savedPost);
   } catch (error) {
     console.log(error);
   }
