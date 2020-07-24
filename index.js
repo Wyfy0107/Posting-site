@@ -9,11 +9,26 @@ app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
   try {
+    console.log("wokrking");
     const profile = await Profile.find();
     res.json(profile);
     res.end();
   } catch (error) {
     res.json(error);
+  }
+});
+
+app.post("/", async (req, res) => {
+  try {
+    const profile = new Profile({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      age: req.body.age,
+    });
+    const savedProfile = await profile.save();
+    res.json(savedProfile);
+  } catch (error) {
+    console.log(error);
   }
 });
 
