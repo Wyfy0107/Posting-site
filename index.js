@@ -16,13 +16,13 @@ app.get("/", async (req, res) => {
 mongoose.connect(
   process.env.MONDGODB_URI ||
     "mongodb+srv://wyfy:Wyfy010798@cluster0.juxbs.mongodb.net/Cluster0?retryWrites=true&w=majority",
-  (err, res) => {
-    if (err) {
-      console.log("failed" + error);
-    } else {
-      console.log("success");
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  async (err, res) => {
+    try {
+      console.log('success')
+    } catch (error) {
+      res.json({message: error})
     }
-  }
 );
 
 app.listen(PORT);
