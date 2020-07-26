@@ -43,8 +43,7 @@ app.delete("/", async (req, res) => {
 
 mongoose
   .connect(
-    process.env.MONDGODB_URI ||
-     ,
+    process.env.MONDGODB_URI,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
